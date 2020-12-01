@@ -34,13 +34,14 @@
                     {!! Form::submit('Update Post', ['class'=>'btn btn-primary col-sm-5']) !!}
                 </div>
 
+            {!! Form::close() !!}
 
-            {!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\AdminPostsController@destroy',$post->id]]) !!}
+            {{--  {!! Form::open(['method'=>'DELETE','action'=>'App\Http\Controllers\AdminPostsController@destroy']) !!}
 
                 <div class="form-group">
-                    {!! Form::submit('Delete Post', ['class'=>'btn btn-danger col-sm-5 ']) !!}  {{-- pull-right --}}
+                    {!! Form::submit('Delete Post', ['class'=>'btn btn-danger col-sm-5 ']) !!}
                 </div>
-            {!! Form::close() !!}
+            {!! Form::close() !!}  --}}
         </div>
     </div>
 

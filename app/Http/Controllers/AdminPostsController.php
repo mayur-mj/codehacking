@@ -99,18 +99,27 @@ class AdminPostsController extends Controller
 
         $input=$request->all();
 
-        if($file=$request->file('photo_id')){
-            $name =time().$file->getClientOriginalName();
-            $file->move('images',$name);
+            if($file=$request->file('photo_id')){
+                $name =time().$file->getClientOriginalName();
+                $file->move('images',$name);
 
-            $photo=Photo::create(['file'=>$name]);
+                $photo=Photo::create(['file'=>$name]);
 
-            $input['photo_id']=$photo->id;
-        }
+                $input['photo_id']=$photo->id;
+            }
 
-        Auth::user()->post()->whereId($id)->first()->update($input);
+            if (is_null(Auth::user()->post()->whereId($id)->first())) {
+                // it's null, redirect or do something
+                session()->flash('post_not_update','Post Cannot updated ');
+                return redirect('admin/posts');
+            } else {
+                // It's not null, update the post
+                Auth::user()->post()->whereId($id)->first()->update($input);
+            }
+            session()->flash('updated_post','Post Has Been updated ');
+            return redirect('admin/posts');
 
-        return redirect('admin/posts');
+
 
     }
 
@@ -120,8 +129,9 @@ class AdminPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         //
+        return $request->all();
     }
 }
