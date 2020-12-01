@@ -79,8 +79,7 @@ class AdminCategoriesController extends Controller
     {
         //
         $categories = Category::findOrFail($id);
-        // $input = $request->all();
-        $categories->update();
+        $categories->update($request->all());
 
         return redirect('admin/categories');
     }
@@ -94,5 +93,8 @@ class AdminCategoriesController extends Controller
     public function destroy($id)
     {
         //
+        Category::findOrFail($id)->delete();
+
+        return redirect('admin/categories');
     }
 }
