@@ -129,9 +129,18 @@ class AdminPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroye(Request $request,$id)
     {
         //
-        return $request->all();
+        $post=Post::findOrFail($id);
+
+        unlink(public_path().$post->photo->file);
+
+        $post->delete();
+
+        session()->flash('deleted_post','The Post Has Been Deleted');
+
+        return redirect('admin/posts');
+
     }
 }

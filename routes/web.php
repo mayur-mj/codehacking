@@ -28,10 +28,14 @@ Route::get('/admin',function(){
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'admin'], function() {
-    //
+
+    //------------Admin Users Routes------------------------
 
     Route::resource('admin/users', 'App\Http\Controllers\AdminUsersController');
     // Route::resource('admin/posts', 'App\Http\Controllers\AdminPostsController');
+
+
+    //---------------Admin Posts Routes---------------------
 
     Route::get('admin/posts', 'App\Http\Controllers\AdminPostsController@index')->name('posts.index');
     Route::get('admin/posts/create', 'App\Http\Controllers\AdminPostsController@create')->name('posts.create');
@@ -39,6 +43,20 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('admin/posts/{post}/edit', 'App\Http\Controllers\AdminPostsController@edit')->name('posts.edit');
     Route::put('admin/posts/{post}', 'App\Http\Controllers\AdminPostsController@update')->name('posts.update');
     Route::delete('admin/posts/{post}', 'App\Http\Controllers\AdminPostsController@destroye')->name('posts.destroye');
+
+
+    //----------------Admin Categories Routes---------------------
+
+
+    Route::resource('admin/categories', 'App\Http\Controllers\AdminCategoriesController');
+
+
+    // Route::get('admin/categories','App\Http\Controllers\AdminCategoriesController@index')->name('categories.index');
+    // Route::get('admin/categories/create', 'App\Http\Controllers\AdminCategoriesController@create')->name('categories.create');
+    // Route::post('admin/categories/', 'App\Http\Controllers\AdminCategoriesController@store')->name('categories.store');
+    // Route::get('admin/categories/{category}/edit', 'App\Http\Controllers\AdminCategoriesController@edit')->name('categories.edit');
+    // Route::put('admin/categories/{category}', 'App\Http\Controllers\AdminCategoriesController@update')->name('categories.update');
+    // Route::delete('admin/categories/{category}', 'App\Http\Controllers\AdminCategoriesController@destroye')->name('categories.destroye');
 
 });
 

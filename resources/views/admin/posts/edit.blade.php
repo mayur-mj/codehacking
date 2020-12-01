@@ -36,12 +36,12 @@
 
             {!! Form::close() !!}
 
-            {{--  {!! Form::open(['method'=>'DELETE','action'=>'App\Http\Controllers\AdminPostsController@destroy']) !!}
+            {!! Form::open(['method'=>'DELETE','action'=>['App\Http\Controllers\AdminPostsController@destroye',$post->id]]) !!}
 
                 <div class="form-group">
                     {!! Form::submit('Delete Post', ['class'=>'btn btn-danger col-sm-5 ']) !!}
                 </div>
-            {!! Form::close() !!}  --}}
+            {!! Form::close() !!}
         </div>
     </div>
 
