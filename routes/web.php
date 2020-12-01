@@ -58,6 +58,12 @@ Route::group(['middleware' => 'admin'], function() {
     // Route::put('admin/categories/{category}', 'App\Http\Controllers\AdminCategoriesController@update')->name('categories.update');
     // Route::delete('admin/categories/{category}', 'App\Http\Controllers\AdminCategoriesController@destroye')->name('categories.destroye');
 
+    //--------------------Admin Medias Routes---------------------------
+
+     Route::resource('admin/medias', 'App\Http\Controllers\AdminMediasController');
+    // Route::get('admin/medias/','App\Http\Controllers\AdminMediasController@index')->name('medias.index');
+    // Route::get('admin/medias/create','App\Http\Controllers\AdminMediasController@create')->name('medias.create');
+    // Route::get('admin/medias/{media}/edit','App\Http\Controllers\AdminMediasController@edit')->name('medias.edit');
 });
 
 

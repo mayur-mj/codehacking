@@ -10,7 +10,7 @@
     @elseif(session('post_not_update'))
         <div class="alert alert-danger">{{ session('post_not_update') }}</div>
     @endif  --}}
-    <h1>Categories</h1>
+    <h1>Create Categories</h1>
         <div class="col-sm-5">
             {!! Form::open(['method'=>'Post','action'=>'App\Http\Controllers\AdminCategoriesController@store']) !!}
 
@@ -26,7 +26,7 @@
             {!! Form::close() !!}
         </div>
     <div class="col-sm-7">
-
+        <h4>All Categories</h4>
         <table class="table">
             <thead>
                 <th>Id</th>
