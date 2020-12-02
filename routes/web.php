@@ -20,20 +20,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin',function(){
-    return view('admin.index');
-});
-
+Route::get('post/{post}','App\Http\Controllers\AdminPostsController@post')->name('home.post');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'admin'], function() {
 
+    //-----------Admin Routes---------------
+
+    Route::get('/admin',function(){
+        return view('admin.index');
+    });
+
     //------------Admin Users Routes------------------------
 
     Route::resource('admin/users', 'App\Http\Controllers\AdminUsersController');
-    // Route::resource('admin/posts', 'App\Http\Controllers\AdminPostsController');
-
 
     //---------------Admin Posts Routes---------------------
 
@@ -44,27 +45,25 @@ Route::group(['middleware' => 'admin'], function() {
     Route::put('admin/posts/{post}', 'App\Http\Controllers\AdminPostsController@update')->name('posts.update');
     Route::delete('admin/posts/{post}', 'App\Http\Controllers\AdminPostsController@destroye')->name('posts.destroye');
 
-
     //----------------Admin Categories Routes---------------------
 
-
     Route::resource('admin/categories', 'App\Http\Controllers\AdminCategoriesController');
-
-
-    // Route::get('admin/categories','App\Http\Controllers\AdminCategoriesController@index')->name('categories.index');
-    // Route::get('admin/categories/create', 'App\Http\Controllers\AdminCategoriesController@create')->name('categories.create');
-    // Route::post('admin/categories/', 'App\Http\Controllers\AdminCategoriesController@store')->name('categories.store');
-    // Route::get('admin/categories/{category}/edit', 'App\Http\Controllers\AdminCategoriesController@edit')->name('categories.edit');
-    // Route::put('admin/categories/{category}', 'App\Http\Controllers\AdminCategoriesController@update')->name('categories.update');
-    // Route::delete('admin/categories/{category}', 'App\Http\Controllers\AdminCategoriesController@destroye')->name('categories.destroye');
 
     //--------------------Admin Medias Routes---------------------------
 
      Route::resource('admin/medias', 'App\Http\Controllers\AdminMediasController');
-    // Route::get('admin/medias/','App\Http\Controllers\AdminMediasController@index')->name('medias.index');
-    // Route::get('admin/medias/create','App\Http\Controllers\AdminMediasController@create')->name('medias.create');
-    // Route::get('admin/medias/{media}/edit','App\Http\Controllers\AdminMediasController@edit')->name('medias.edit');
+
+    //-------------------Coments Routes---------------------------------
+
+    Route::resource('admin/comments', 'App\Http\Controllers\PostCommentsController');
+
+    //-------------------Posts Comments Replies------------------------------
+
+    Route::resource('admin/comments/replies', 'App\Http\Controllers\CommentRepliesController');
+
 });
+
+
 
 
 
