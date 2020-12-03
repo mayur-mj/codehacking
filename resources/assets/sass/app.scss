@@ -7,10 +7,12 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// .comment-reply{
 
-.nessted-comment{
+//     display: none !important;
+//     display: block;
+// }
+#nessted-comment{
     margin-top: 20px;
 }
-.comment-reply{
-    display: none;
-}
+

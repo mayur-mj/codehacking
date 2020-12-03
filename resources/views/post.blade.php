@@ -81,7 +81,7 @@
 
 
                             <!-- Nested Comment -->
-                                <div class="media" style="margin-top: 25px">
+                                <div id="nessted-comment" class="media">
 
                                     <a class="pull-left" href="#">
                                         <img height="60px" width="60px" class="media-object" src="{{ $reply->photo }}" alt="">
@@ -93,15 +93,17 @@
                                         {{ $reply->body }}
                                     </div>
                                     <div class="comment-reply-container">
+
                                         <button class="toggle-reply btn btn-primary pull-right">Reply</button>
-                                        <div class="comment-reply">
+
+                                        <div class="comment-reply col-sm-6" style="display:none">
                                             {!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\CommentRepliesController@createReply']) !!}
 
                                                 <input type="hidden" name="comment_id" value="{{ $comment->id }}">
 
                                                 <div class="form-group">
                                                     {!! Form::label('body', 'Reply : ') !!}
-                                                    {!! Form::textarea('body', null, ['class'=>'form-control','rows'=>'1']) !!}
+                                                    {!! Form::textarea('body', null, ['class'=>'form-control col-sm-4','rows'=>'1']) !!}
                                                 </div>
                                                 <div class="form-group">
                                                     {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
@@ -124,10 +126,11 @@
 
     <script>
 
-        $(".comment-reply-container.toggle-reply").click(function(){
-            $(this)
-        })
 
+        $(".comment-reply-container .toggle-reply").click(function(){
+
+            $(this).next().slideToggle("slow");
+         });
     </script>
 
 @endsection
