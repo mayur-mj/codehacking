@@ -76,13 +76,12 @@
                         {{ $comment->body }}
                     </div>
 
-                @if(count($comment->replies) > 0)
-                    @foreach($comment->replies as $reply)
-
+                    @if(count($comment->replies) > 0)
+                        @foreach($comment->replies as $reply)
 
                             <!-- Nested Comment -->
                                 <div id="nessted-comment" class="media">
-
+                                    @if($reply->is_active == 1)
                                     <a class="pull-left" href="#">
                                         <img height="60px" width="60px" class="media-object" src="{{ $reply->photo }}" alt="">
                                     </a>
@@ -92,6 +91,11 @@
                                         </h4>
                                         {{ $reply->body }}
                                     </div>
+                                    @endif
+                                </div>
+                        @endforeach
+                    @endif
+                                <div id="nessted-comment" class="media">
                                     <div class="comment-reply-container">
 
                                         <button class="toggle-reply btn btn-primary pull-right">Reply</button>
@@ -114,8 +118,6 @@
                                 </div>
                             <!-- End Nested Comment -->
 
-                    @endforeach
-                @endif
             </div>
         @endforeach
     @endif
