@@ -150,6 +150,7 @@ class AdminPostsController extends Controller
 
         $comments = $posts->comments()->whereIsActive(1)->get();
 
+
         return view('post',compact('posts','comments'));
 
     }

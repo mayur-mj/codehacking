@@ -16,6 +16,7 @@ class CommentReply extends Model
         'author',
         'email',
         'body',
+        'photo',
 
     ];
 

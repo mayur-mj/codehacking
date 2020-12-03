@@ -12,10 +12,8 @@
     <title>Blog Post - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="{{ asset('css/blog-post.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -146,12 +144,9 @@
     </div>
     <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="{{ asset('js/jquery.js') }}"></script>
-
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
+    <script src="{{ asset('js/libs.js') }}"></script>
+    @yield('scripts')
 </body>
 
 </html>
