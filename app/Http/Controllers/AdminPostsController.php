@@ -8,6 +8,9 @@ use App\Http\Requests\PostsRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Photo;
 use App\Models\Category;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+// use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+
 
 class AdminPostsController extends Controller
 {
@@ -19,7 +22,8 @@ class AdminPostsController extends Controller
     public function index()
     {
         //
-        $posts=Post::all();
+
+        $posts=Post::paginate(1);
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -44,6 +48,8 @@ class AdminPostsController extends Controller
     public function store(PostsRequest $request)
     {
         //
+        // $post = Post::findBySlug($request);
+
         $input=$request->all();
         // $user=Auth::user();
 
@@ -55,6 +61,8 @@ class AdminPostsController extends Controller
 
             $input['photo_id']=$photo->id;
         }
+
+        // $post = SlugService::createSlug(Post::class, 'slug',$request->$post);
 
         Auth::user()->post()->create($input);
 
@@ -146,7 +154,8 @@ class AdminPostsController extends Controller
     }
 
     public function post($id){
-        $posts = Post::findOrFail($id);
+
+        $posts = Post::findBySlugOrFail($id);
 
         $comments = $posts->comments()->whereIsActive(1)->get();
 

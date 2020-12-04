@@ -36,8 +36,8 @@
                             <td>{{ $post->category ? $post->category->name : 'Uncategories' }}</td>
                             <td><img class="img-rounded" height="70px" width="90px" src="{{ $post->photo ? $post->photo->file : 'http://placehold.it/400x400' }}" alt=""></td>
                             <td>{{ $post->title }}</td>
-                            <td>{{ Str::limit($post->body,20)}}</td>
-                            <td> <a href="{{ route('home.post',$post->id) }}">View Post</a></td>
+                            <td>{{ $post->body}}</td>
+                            <td> <a href="{{ route('home.post',$post->slug) }}">View Post</a></td>
                             <td><a href="{{ route('comments.show',$post->id) }}">View Comments</a></td>
                             <td>{{ $post->created_at->diffForHumans() }}</td>
                             <td>{{ $post->updated_at->diffForHumans() }}</td>
@@ -47,4 +47,16 @@
             </tbody>
         </table>
     </div>
+
+
+    <div class="row">
+
+        <div class="col-sm-6 col-sm-offset-5">
+            {{ $posts->render() }}
+        </div>
+
+    </div>
+
+
+
 @endsection

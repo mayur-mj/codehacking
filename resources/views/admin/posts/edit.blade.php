@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 
+
     <h1>Edit Post</h1>
     <div class="row">
         <div class="col-sm-2">
