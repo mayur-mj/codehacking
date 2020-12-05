@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Category;
 use App\Models\Photo;
+use App\Models\Comment;
 
-use function PHPUnit\Framework\assertNotEmpty;
-
-class AdminMediasController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +18,11 @@ class AdminMediasController extends Controller
     public function index()
     {
         //
-        $photos=Photo::all();
-        return view('admin.media.index',compact('photos'));
+        $postsCount = Post::count();
+        $categoriesCount = Category::count();
+        $commentsCount = Comment::count();
+        $photosCount = Photo::count();
+        return view('admin.index',compact('postsCount','categoriesCount','commentsCount','photosCount'));
     }
 
     /**
@@ -29,7 +33,6 @@ class AdminMediasController extends Controller
     public function create()
     {
         //
-        return view('admin.media.upload');
     }
 
     /**
@@ -41,13 +44,6 @@ class AdminMediasController extends Controller
     public function store(Request $request)
     {
         //
-        $file=$request->file('file');
-        $name=time().$file->getClientOriginalName();
-        $file->move('images',$name);
-
-        Photo::create(['file'=>$name]);
-
-        return redirect('admin/medias');
     }
 
     /**
@@ -70,7 +66,6 @@ class AdminMediasController extends Controller
     public function edit($id)
     {
         //
-        return view('admin.media.edit');
     }
 
     /**
@@ -94,35 +89,5 @@ class AdminMediasController extends Controller
     public function destroy($id)
     {
         //
-        // $photo = Photo::findOrFail($id);
-        // unlink(public_path() . $photo->file);
-        // $photo->delete();
-
-    }
-
-    public function deleteMedia(Request $request){
-
-        // if(isset($request->delete_single)){
-        //     $this->destroy($request->photo);
-        //     return redirect()->back();
-        // }
-
-
-
-
-        if(isset($request->delete_all) && !empty($request->checkBoxArray)){
-
-            $photos = Photo::findOrFail($request->checkBoxArray);
-
-            foreach($photos as $photo){
-
-                $photo->delete();
-
-            }
-            return redirect()->back();
-        }else{
-            return redirect()->back();
-        }
-
     }
 }

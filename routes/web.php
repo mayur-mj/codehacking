@@ -14,27 +14,26 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','App\Http\Controllers\HomeController@index');
 
 Auth::routes();
 
-Route::get('post/{post}','App\Http\Controllers\AdminPostsController@post')->name('home.post');
+Route::get('post/{id}','App\Http\Controllers\AdminPostsController@post')->name('home.post');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'admin'], function() {
 
+
     //-----------Admin Routes---------------
 
-    Route::get('/admin',function(){
-        return view('admin.index');
-    });
+    Route::get('/admin','App\Http\Controllers\AdminController@index');
+
 
     //------------Admin Users Routes------------------------
 
     Route::resource('admin/users', 'App\Http\Controllers\AdminUsersController');
+
 
     //---------------Admin Posts Routes---------------------
 
@@ -45,19 +44,23 @@ Route::group(['middleware' => 'admin'], function() {
     Route::put('admin/posts/{post}', 'App\Http\Controllers\AdminPostsController@update')->name('posts.update');
     Route::delete('admin/posts/{post}', 'App\Http\Controllers\AdminPostsController@destroye')->name('posts.destroye');
 
+
     //----------------Admin Categories Routes---------------------
 
     Route::resource('admin/categories', 'App\Http\Controllers\AdminCategoriesController');
+
 
     //--------------------Admin Medias Routes---------------------------
 
      Route::resource('admin/medias', 'App\Http\Controllers\AdminMediasController');
 
-     Route::delete('delete/media','App\Http\Controllers\AdminMediasController@deleteMedia')->name('delete.media');
+     Route::delete('admin/delete/media','App\Http\Controllers\AdminMediasController@deleteMedia')->name('delete.media');
+
 
     //-------------------Coments Routes---------------------------------
 
     Route::resource('admin/comments', 'App\Http\Controllers\PostCommentsController');
+
 
     //-------------------Posts Comments Replies------------------------------
 
