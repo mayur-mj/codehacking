@@ -1,6 +1,9 @@
-@extends('layouts.blog-post')
+@extends('layouts.blog-home')
 
 @section('content')
+    <div class="row">
+        <div class="col-md-8">
+
 
     <!-- Blog Post -->
 
@@ -121,7 +124,9 @@
             </div>
         @endforeach
     @endif
-
+    </div>  <!-----Col-Md-4----->
+    @include('includes.front_home_sidebar')
+</div>  <!-----Row----->
 @endsection
 
 @section('scripts')
@@ -136,3 +141,7 @@
     </script>
 
 @endsection
+
+
+
+
