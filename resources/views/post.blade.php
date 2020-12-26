@@ -31,9 +31,7 @@
     <p class="lead">{{ $posts->body }}</p>
     <hr>
 
-    @if(session('comment_message'))
-        <div class="alert alert-success">{{ session('comment_message') }}</div>
-    @endif
+
 
     <!-- Blog Comments -->
 

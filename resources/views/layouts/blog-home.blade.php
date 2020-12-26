@@ -9,6 +9,10 @@
 
     @include('includes.front_home_nav')
 
+    <!--- Page Content --->
+
+    @include('includes.flash_message')
+
     @yield('content')
         <hr>
 

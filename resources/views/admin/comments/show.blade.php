@@ -38,7 +38,6 @@
 
                                         {!! Form::close() !!}
                                     @else
-
                                         {!! Form::open(['method'=>'PUT','action'=>['App\Http\Controllers\PostCommentsController@update',$comment->id]]) !!}
 
                                             <input type="hidden" name="is_active" value="1">
@@ -46,7 +45,6 @@
                                             {!! Form::submit('Approve', ['class'=>'btn btn-info']) !!}
 
                                         {!! Form::close() !!}
-
                                     @endif
                                 </td>
                                 <td>
